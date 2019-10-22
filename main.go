@@ -75,7 +75,6 @@ func handler(env *env) http.Handler {
 			fmt.Println(rs.Err())
 		}
 
-		//fmt.Println(location)
 
 		if location == "" {
 			client := &http.Client{
@@ -95,7 +94,6 @@ func handler(env *env) http.Handler {
 				//amap["banned"] = "0"
 				is := env.rediscl.HMSet(shortLink, amap)
 				if is.Err() == nil {
-					//fmt.Println("Salvato!")
 				} else {
 					fmt.Println(err)
 				}
@@ -103,7 +101,6 @@ func handler(env *env) http.Handler {
 		}
 		//}
 		http.Redirect(w, r, location, 301)
-		//fmt.Println("Redirecting " + resp.Request.URL.EscapedPath() + " to " + location)
 		message := " - Link obtained from "
 		if ok {
 			message += "database"
